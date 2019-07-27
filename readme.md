@@ -37,17 +37,23 @@ This package implements a simple normalized fuzzy solver
 
 The rules are executed from left to right.
 > A and B or C -> [ [A, B, C], [and, or] ]
+>
 > A or B and C -> [ [ [A, B], C], [or, and] ]
+>
 > A and B or C and D -> [ [ [A, B], [C, D]], [and, or, and] ]
+>
 > A and (B or C) -> [ [A, [B, C] ], [and, or]]
+>
 > A and (B or C or D) and D -> [ [A, [B, C, D], D], [and, or, or, and] ]
+>
+
 ---
 
-### Example
+### Definition Example
 
 ```python
 BASE_VARIABLES = List[float]
 MEANING = List[Dict[str,float]]
 FUZZY_VARS = List[FuzzyVar]
-FUZZY_RULES = List[Tuple[List[Any '''float or list'''],]]
+FUZZY_RULES = List[Tuple[List[Any '''float or list'''], List[Callable[[float,float], float]]]]
 ```
